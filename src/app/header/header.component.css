@@ -1,0 +1,10 @@
+#headerNavBar {
+    background-color: #c9f08af8;
+}
+#headerTitle {
+    color: rgb(68, 64, 64); 
+    text-shadow: 1px 2px #615e5e;
+}
+#headerSubNav {
+    background-color: #d3f19a98;
+}

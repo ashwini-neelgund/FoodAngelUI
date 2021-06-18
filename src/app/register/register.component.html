@@ -1,0 +1,162 @@
+<div class="container-fluid col-md-8 p-5">
+    <div class="card" id="shadow">
+        <img src="../../assets/images/sunrise.jpg" class="card-img" alt="..." id="bgImage">
+        <div class="card-img-overlay">
+            <form class="row g-3 needs-validation p-5" novalidate [formGroup]="registerForm"
+                (ngSubmit)="registerAngel()">
+                <div class="col-md-6 position-relative p-2">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                    <span
+                        *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.hasError('required')">Please
+                        enter Firstname</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                    <span
+                        *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.hasError('required')">Please
+                        enter Lastname</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="userName" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                        <input type="text" class="form-control" id="userName" formControlName="userName"
+                            aria-describedby="validationTooltipUsernamePrepend">
+                    </div>
+                    <span
+                        *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName')?.hasError('required')">Please
+                        enter Username</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="emailAddress" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
+                    <span
+                        *ngIf="registerForm.get('emailAddress')?.touched && registerForm.get('emailAddress')?.hasError('required')">Pleasez
+                        enter Email Address</span>
+                    <span
+                        *ngIf="registerForm.get('emailAddress')?.touched && registerForm.get('emailAddress')?.hasError('email')">Please
+                        enter Valid Email Address</span>
+                </div>
+                <div class="col-md-12 position-relative p-2">
+                    <label class="form-label me-4">Select Gender</label>
+                    <div class="form-check form-check-inline me-4">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="male" value="male">
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="female"
+                            value="female">
+                        <label class="form-check-label" for="female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                    <div id="passwordHelpBlock" class="form-text">
+                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain
+                        spaces, special characters, or emoji.
+                    </div>
+                    <span
+                        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">Please
+                        enter Password</span>
+                    <span
+                        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minLength')">Please
+                        enter valid Password</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="confirmPassword" class="form-label">Re-enter Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                    <span
+                        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('required')">Please
+                        enter Password</span>
+                    <span
+                        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('minLength')">Please
+                        re-enter valid Password</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="number" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+                    <span
+                        *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.hasError('required')">Please
+                        enter Phone Number</span>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="altNumber" class="form-label">Alternate Number</label>
+                    <input type="number" class="form-control" id="altNumber" formControlName="altNumber">
+                </div>
+                <div formGroupName="address"  class="col-md-12 position-relative">
+                    <label for="address" class="col-md-12 form-label fs-4">Address</label>
+                    <div class="col-md-5 form-check-inline position-relative">
+                        <label for="address1" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address1" formControlName="address1">
+                        <span
+                            *ngIf="registerForm.get('address1')?.touched && registerForm.get('address1')?.hasError('required')">Please
+                            enter home address</span>
+                    </div>
+                    <div class="col-md-5 form-check-inline position-relative">
+                        <label for="address2" class="form-label">Address 2</label>
+                        <input type="text" class="form-control" id="address2" formControlName="address2">
+                        <span
+                            *ngIf="registerForm.get('address2')?.touched && registerForm.get('address2')?.hasError('required')">Please
+                            enter home address</span>
+                    </div>
+                    <div class="col-md-5 form-check-inline position-relative p-2">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" formControlName="city">
+                        <span
+                            *ngIf="registerForm.get('city')?.touched && registerForm.get('city')?.hasError('required')">Please
+                            enter City</span>
+                    </div>
+                    <div class="col-md-5 form-check-inline position-relative p-2">
+                        <label for="state" class="form-label">State</label>
+                        <select class="form-select" id="state" formControlName="state">
+                            <option selected disabled value="">Choose...</option>
+                            <option>...</option>
+                        </select>
+                        <span
+                            *ngIf="registerForm.get('state')?.touched && registerForm.get('state')?.hasError('required')">Please
+                            enter State</span>
+                    </div>
+                    <div class="col-md-5 form-check-inline position-relative p-2">
+                        <label for="zipCode" class="form-label">Zip</label>
+                        <input type="number" class="form-control" id="zipCode" formControlName="zipCode">
+                        <span
+                            *ngIf="registerForm.get('zipCode')?.touched && registerForm.get('zipCode')?.hasError('required')">Please
+                            enter Zipcode</span>
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative p-2">
+                    <label for="idFile" class="form-label">Please upload valid ID</label>
+                    <input class="form-control" type="file" id="idFile" formControlName="idFile">
+                    <span
+                        *ngIf="registerForm.get('idFile')?.touched && registerForm.get('idFile')?.hasError('required')">Please
+                        upload copy of ID</span>
+                </div>
+                <div class="col-md-12 position-relative p-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="termsAndConditions"
+                            formControlName="termsAndConditions">
+                        <label class="form-check-label" for="termsAndConditions">
+                            Agree to terms and conditions
+                        </label>
+                    </div>
+                    <span
+                        *ngIf="registerForm.get('termsAndConditions')?.touched && registerForm.get('termsAndConditions')?.hasError('required')">Please
+                        read terms and conditions and select if you agree</span>
+                </div>
+                <div class="d-grid gap-2 col-3 p-2">
+                    <button class="btn btn-dark" type="submit" [disabled]="!registerForm.valid">Register</button>
+                </div>
+                <div class="d-grid gap-2 col-3 p-2">
+                    <button class="btn btn-dark" type="submit" (click)="resetForm()">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
