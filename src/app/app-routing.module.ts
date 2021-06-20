@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Route[] = [
   {path: 'register', component: RegisterComponent},
+  {path: 'angel', component: MainComponent},
   {path: '', component: MainComponent}
 ];
 
