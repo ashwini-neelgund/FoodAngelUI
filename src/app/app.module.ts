@@ -10,6 +10,10 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { RequestComponent } from './request/request.component';
+import { StatusComponent } from './status/status.component';
+import { AngelComponent } from './angel/angel.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    RequestComponent,
+    StatusComponent,
+    AngelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

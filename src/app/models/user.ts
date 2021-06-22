@@ -1,7 +1,8 @@
 import { Address } from "./address";
+import { Request } from "./request";
 
 export class User {
-    userId!: number;
+    id!: number;
     firstName!: string;
     lastName!: string;
     emailAddress!: string;
@@ -11,4 +12,5 @@ export class User {
     altNumber!: number;
     address!: Address[];
     userType!: string;
+    requests!: Request[];
 }

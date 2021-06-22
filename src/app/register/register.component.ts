@@ -18,6 +18,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  
   registerForm!: FormGroup;
   selectedFile!: File;
   @ViewChild("address2")
