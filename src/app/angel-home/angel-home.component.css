@@ -1,0 +1,9 @@
+#shadow {
+    box-shadow: +30px +30px 40px 1px #1b1101;
+    border-radius: 30px;
+  }
+
+#bgImage {
+    border-radius: 30px;
+    opacity: 0.7;
+}

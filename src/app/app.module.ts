@@ -8,8 +8,12 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AngelHomeComponent } from './angel-home/angel-home.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { BasicAuthHttpInterceptorService } from './services/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    AngelHomeComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,9 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     ReactiveFormsModule,
     GooglePlaceModule
   ],
-  providers: [],
+  providers: [{  
+    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true 
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

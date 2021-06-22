@@ -17,16 +17,19 @@
                 <a class="nav-link fw-bold text-muted" href="#">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold text-muted" href="register">Angel Registration</a>
+                <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link fw-bold text-muted" href="#">Request for Help</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold text-muted" href="#">Angel Login</a>
+                <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link fw-bold text-muted" href="#">Check Request Status</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold text-muted" href="#">Request for Help</a>
+                <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link fw-bold text-muted" href="register">Angel Registration</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold text-muted" href="#">Check Request Status</a>
+                <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link fw-bold text-muted" href="login">Angel Login</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="loginService.isUserLoggedIn()" class="nav-link fw-bold text-muted" href="logout">Angel Logout</a>
             </li>
             </ul>
         </div>

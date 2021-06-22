@@ -11,6 +11,7 @@ import {
 import { MustMatch } from '../utilities/custom-validators';
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-register',
@@ -140,7 +141,6 @@ export class RegisterComponent implements OnInit {
   registerAngel() {
     //sets the image and user data into form object
     const userAndImageData = new FormData();
-    this.registerForm.value.userType = 'angel';
     const blobUser = new Blob([JSON.stringify(this.registerForm.getRawValue())], {
       type: 'application/json',
     });

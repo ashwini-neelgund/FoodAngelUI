@@ -1,4 +1,5 @@
 import { Address } from "./address";
+import { Request } from "./request";
 
 export class User {
     userId!: number;
@@ -11,4 +12,6 @@ export class User {
     altNumber!: number;
     address!: Address[];
     userType!: string;
+    requests!: Request[];
+    requestsAssignedToAngel!: Request[];
 }
