@@ -1,1 +1,79 @@
-<p>angel works!</p>
+<div class="container-fluid col-md-10 p-3">
+    <div class="card" id="shadow">
+        <img src="../../assets/images/sunrise.jpg" class="card-img" alt="..." id="bgImage">
+        <div class="card-img-overlay">
+            <div class="row">
+                <div class="col">
+                    <!--New Request form-->
+                    <form class="row g-3 needs-validation p-5" novalidate [formGroup]="newReqForm">
+                        <h2 class="p-3">New Requests</h2>
+                        <div class="accordion" id="accordionExample">
+                            <!--ngfor loop started for dynamic data -->
+                            <div class="accordion-item" *ngFor="let request of newRequests; let i = index">
+                                <h2 class="accordion-header" [id]="'heading'+i">
+                                    <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                                        data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"
+                                        aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                                        Request ID : {{request.id}}
+                                    </button>
+                                </h2>
+                                <div [id]="'collapse'+i" class="accordion-collapse collapse"
+                                    [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Request Status : {{request.status}}</p>
+                                        <div *ngIf="request.itemsRequested?.length">
+                                            <p>Essentials selected : </p>
+                                            <ul *ngFor="let item of request.itemsRequested">
+                                                <li>{{item.name}}</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-secondary"
+                                                (click)="assignRequest(request.id)">Work my magic</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <!--Assigned Request form-->
+                    <form class="row g-3 needs-validation p-5" novalidate [formGroup]="assignedReqForm">
+                        <h2 class="p-3">Assigned Requests</h2>
+                        <div class="accordion" id="accordionExample1">
+                            <!--ngfor loop started for dynamic data -->
+                            <div class="accordion-item" *ngFor="let request of assignedRequests; let i = index">
+                                <h2 class="accordion-header" [id]="'heading1'+i">
+                                    <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                                        data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse1'+i"
+                                        aria-expanded="true" [attr.aria-controls]="'collapse1'+i">
+                                        Request ID : {{request.id}}
+                                    </button>
+                                </h2>
+                                <div [id]="'collapse1'+i" class="accordion-collapse collapse"
+                                    [attr.aria-labelledby]="'heading1'+i" data-bs-parent="#accordionExample1">
+                                    <div class="accordion-body">
+                                        <p>Request Status : {{request.status}}</p>
+                                        <div *ngIf="request.itemsRequested?.length">
+                                            <p>Essentials selected : </p>
+                                            <ul *ngFor="let item of request.itemsRequested">
+                                                <li>{{item.name}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-block">
+                                            <button type="button" class="btn btn-secondary m-2"
+                                                (click)="updateRequest(request.id)">Magic done</button>
+                                            <button type="button" class="btn btn-secondary m-2"
+                                                (click)="removeAssignedRequest(request.id)">Cannot Work My Magic On It</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
