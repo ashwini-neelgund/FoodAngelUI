@@ -8,13 +8,13 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  private baseURL = "http://localhost:8080";
+  private baseURL = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
 
   //calls rest url for angel registration
   registerAngel(userAndImageData: FormData): Observable<Object>{
-    return this.httpClient.post(this.baseURL+'/register',userAndImageData);
+    return this.httpClient.post(`${this.baseURL}/register`,userAndImageData);
   }
 
 }
