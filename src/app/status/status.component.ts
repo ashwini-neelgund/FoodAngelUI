@@ -1,15 +1,76 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Request } from '../models/request';
+import { SeekerService } from '../services/seeker.service';
 
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
-  styleUrls: ['./status.component.css']
+  styleUrls: ['./status.component.css'],
 })
 export class StatusComponent implements OnInit {
+  checkStatusForm!: FormGroup;
+  updateStatusForm!: FormGroup;
+  requestDeatils!: Request;
+  requestExist: boolean = false;
+  btnClicked: boolean = false;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private seekerService: SeekerService
+  ) {
+    this.checkStatusForm = this.formBuilder.group({
+      id: ['', [Validators.required]],
+      pin: ['', [Validators.required]],
+    });
 
-  ngOnInit(): void {
+    this.updateStatusForm = this.formBuilder.group({});
   }
 
+  ngOnInit(): void {}
+
+  // Gets called on checkStatusForm submission
+  checkRequestStatus() {
+    //calls check request status service method
+    this.seekerService.getRequest(this.checkStatusForm.get('id')?.value,this.checkStatusForm.get('pin')?.value).subscribe(
+      (data) => {
+        this.requestDeatils = data;
+        this.btnClicked = true;
+        if (this.requestDeatils == null) {
+          this.requestExist = false;
+        } else {
+          this.requestExist = true;
+        }
+        console.log(this.requestDeatils);
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  // Gets called on updateStatusForm submission
+  updateRequestStatus() {
+    //calls update request status service method
+    this.seekerService.updateRequest(this.requestDeatils).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  //Clears the form on click of clear button
+  deleteRequest() {
+    this.seekerService.deleteRequest(this.requestDeatils.id).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  //Clears the form on click of clear button
+  resetForm() {
+    this.checkStatusForm.reset();
+    this.btnClicked = false;
+  }
 }

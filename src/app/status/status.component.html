@@ -1,1 +1,73 @@
-<p>status works!</p>
+<div class="container-fluid col-md-8 p-5">
+    <div class="card" id="shadow">
+        <img src="../../assets/images/sunrise.jpg" class="card-img" alt="..." id="bgImage">
+        <div class="card-img-overlay">
+
+            <!--Seek Help Request form-->
+            <form class="row g-3 needs-validation p-5" novalidate [formGroup]="checkStatusForm"
+                (ngSubmit)="checkRequestStatus()">
+                <h2 class="p-3">Check Request Status</h2>
+                <div class="row">
+                    <div class="col">
+                        <input type="number" class="form-control" placeholder="Request Id" aria-label="Request Id"
+                            id="id" formControlName="id">
+                        <span
+                            *ngIf="checkStatusForm.get('id')?.touched && checkStatusForm.get('id')?.hasError('required')"
+                            class="alert">Please
+                            enter Request Id</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" placeholder="Pin" aria-label="Pin" id="pin"
+                            formControlName="pin">
+                        <span
+                            *ngIf="checkStatusForm.get('pin')?.touched && checkStatusForm.get('pin')?.hasError('required')"
+                            class="alert">Please
+                            enter PIN</span>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-3 p-2">
+                    <button class="btn btn-dark" type="submit" [disabled]="!checkStatusForm.valid">Check
+                        Request</button>
+                </div>
+                <div class="d-grid gap-2 col-3 p-2">
+                    <button class="btn btn-dark" type="reset" (click)="resetForm()">Clear</button>
+                </div>
+
+                <div class="row">
+                    <div *ngIf="!requestExist && this.btnClicked">
+                        <p class="alert fs-3">Please enter correct Request details.</p>
+                    </div>
+                </div>
+            </form>
+
+            <!--Update Request form-->
+
+            <div *ngIf="requestExist && this.btnClicked">
+                <form class="row g-3 needs-validation p-5" novalidate [formGroup]="updateStatusForm"
+                    (ngSubmit)="updateRequestStatus()">
+                    <h2 class="p-3">Request Details</h2>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Request Status : {{requestDeatils.status}}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Essentials selected : </h5>
+                            <ul *ngFor="let item of requestDeatils.itemsRequested">
+                                <li>{{item.name}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-grid gap-2 col-3 p-2">
+                            <!--<button class="btn btn-dark" type="submit" [disabled]="!updateStatusForm.valid">Update Request</button>-->
+                            <button class="btn btn-dark" type="button" (click)="deleteRequest()">Delete Request</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
