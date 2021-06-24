@@ -32,19 +32,24 @@ export class StatusComponent implements OnInit {
   // Gets called on checkStatusForm submission
   checkRequestStatus() {
     //calls check request status service method
-    this.seekerService.getRequest(this.checkStatusForm.get('id')?.value,this.checkStatusForm.get('pin')?.value).subscribe(
-      (data) => {
-        this.requestDeatils = data;
-        this.btnClicked = true;
-        if (this.requestDeatils == null) {
-          this.requestExist = false;
-        } else {
-          this.requestExist = true;
-        }
-        console.log(this.requestDeatils);
-      },
-      (error) => console.log(error)
-    );
+    this.seekerService
+      .getRequest(
+        this.checkStatusForm.get('id')?.value,
+        this.checkStatusForm.get('pin')?.value
+      )
+      .subscribe(
+        (data) => {
+          this.requestDeatils = data;
+          this.btnClicked = true;
+          if (this.requestDeatils == null) {
+            this.requestExist = false;
+          } else {
+            this.requestExist = true;
+          }
+          console.log(this.requestDeatils);
+        },
+        (error) => console.log(error)
+      );
   }
 
   // Gets called on updateStatusForm submission
@@ -58,14 +63,19 @@ export class StatusComponent implements OnInit {
     );
   }
 
-  //Clears the form on click of clear button
+  //deletes the request on click
   deleteRequest() {
-    this.seekerService.deleteRequest(this.requestDeatils.id).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => console.log(error)
-    );
+    if (this.requestDeatils.status == 'active') {
+      this.seekerService.deleteRequest(this.requestDeatils.id).subscribe(
+        (data) => {
+          alert("Request has been successfully deleted.");
+          this.resetForm();
+        },
+        (error) => console.log(error)
+      );
+    } else {
+      alert('Only request with active status can be deleted');
+    }
   }
 
   //Clears the form on click of clear button
