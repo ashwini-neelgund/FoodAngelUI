@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { BasicAuthHtppInterceptorService } from './services/basic-auth-htpp-interceptor.service';
 import { AngelComponent } from './angel/angel.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LogoutComponent } from './logout/logout.component';
     StatusComponent,
     AngelComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

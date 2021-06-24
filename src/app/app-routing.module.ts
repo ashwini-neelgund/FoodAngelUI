@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
+import { AboutusComponent } from './aboutus/aboutus.component';
 import { AngelComponent } from './angel/angel.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -16,6 +17,7 @@ const routes: Route[] = [
   {path: 'request', component: RequestComponent},
   {path: 'status', component: StatusComponent},
   {path: 'angel', component: AngelComponent,canActivate:[AuthGaurdService]},
+  {path: 'aboutus', component: AboutusComponent},
   {path: '', component: MainComponent}
 ];
 
