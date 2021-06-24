@@ -23,9 +23,9 @@ export class SeekerService {
     return this.httpClient.get<Item[]>(`${this.baseURL}/items`);
   }
 
-  //calls rest url for request logging
-  logRequest(user: User): Observable<Object> {
-    return this.httpClient.post(`${this.baseURL}/add/request`, user);
+  //calls rest url for new request logging
+  logRequest(user: User): Observable<Request> {
+    return this.httpClient.post<Request>(`${this.baseURL}/add/request`, user);
   }
 
   //returns the request details of particular request

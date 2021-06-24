@@ -7,7 +7,7 @@
             <form class="row g-3 needs-validation p-5" novalidate [formGroup]="requestForm" (ngSubmit)="logRequest()">
 
                 <h2 class="p-3">Request Form</h2>
-
+                <div *ngIf="!isAngelPresent" class="alert fs-4">{{errorMsg}}</div>
                 <!--Adress Fields-->
                 <div formArrayName="address" class="col-md-12 position-relative">
                     <div class="col-md-12 form-check-inline position-relative py-3">
@@ -15,6 +15,10 @@
                         <input ngx-google-places-autocomplete [options]="options"
                             (onAddressChange)="AddressChange($event)" placeholder="Enter your address" type="text"
                             class="form-control" formControlName="addressText">
+                            <span
+                        *ngIf="requestForm.get('addressText')?.touched && requestForm.get('addressText')?.hasError('required')"
+                        class="alert">Please
+                        enter your home address</span>
                     </div>
 
                     <div class="col-md-5 form-check-inline position-relative">
@@ -114,7 +118,7 @@
                 <div class="col-md-6 position-relative p-2">
                     <label class="form-label">Select some essentials that might be good to have : </label>
                     <div class="col-md-6 position-relative p-2 form-check" *ngFor="let item of items">
-                        <input class="form-check-input" type="checkbox" [value]="item.id" (change)="onCheckboxChange($event)">
+                        <input class="form-check-input" type="checkbox" [value]="item.id" (change)="onCheckboxChange($event)" formControlName="checkboxes">
                         <label class="form-check-label" for="item">
                             {{item.name}}
                         </label>
@@ -136,7 +140,7 @@
                 </div>
 
                 <div class="d-grid gap-2 col-3 p-2">
-                    <button class="btn btn-dark" type="submit" [disabled]="!requestForm.valid">Log Request</button>
+                    <button class="btn btn-dark" type="submit" [disabled]="!requestForm.valid || !isAngelPresent">Log Request</button>
                 </div>
                 <div class="d-grid gap-2 col-3 p-2">
                     <button class="btn btn-dark" type="reset" (click)="resetForm()">Clear</button>

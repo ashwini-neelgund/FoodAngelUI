@@ -28,9 +28,11 @@ export class RequestComponent implements OnInit {
   items!: Item[];
   itemsReq: number[] = [];
   itemsRequested: ItemRequested[] = [];
-  request: Request = new Request;
+  request: Request = new Request();
   seeker!: User;
-  
+
+  isAngelPresent: boolean = true;
+  errorMsg: string = '';
 
   // Google Maps Api Options
   // Had to import Options directly, per advice at:
@@ -77,7 +79,8 @@ export class RequestComponent implements OnInit {
       termsAndConditions: [
         { value: '', disabled: true },
         [Validators.requiredTrue],
-      ]
+      ],
+      checkboxes: [{ value: '', disabled: true }],
     });
   }
 
@@ -93,14 +96,13 @@ export class RequestComponent implements OnInit {
   }
 
   onCheckboxChange(e: any) {
-  
     if (e.target.checked) {
       this.itemsReq.push(e.target.value);
     } else {
       let i: number = 0;
       this.itemsReq.forEach((item) => {
         if (item == e.target.value) {
-          this.itemsReq.splice(i,1);
+          this.itemsReq.splice(i, 1);
           return;
         }
         i++;
@@ -171,8 +173,12 @@ export class RequestComponent implements OnInit {
             this.requestForm.get('altNumber')?.enable();
             this.requestForm.get('termsAndConditions')?.enable();
             this.requestForm.get('requests')?.enable();
+            this.requestForm.get('checkboxes')?.enable();
+            this.isAngelPresent = true;
           } else {
-            console.log('no angel');
+            this.isAngelPresent = false;
+            this.errorMsg =
+              'Sorry! We currently do not have an Angel for your Zipcode';
           }
         },
         (error) => console.log(error)
@@ -181,8 +187,8 @@ export class RequestComponent implements OnInit {
 
   // Gets called on form submission
   logRequest() {
-    this.itemsReq.forEach(element => {
-      this.itemsRequested.push({id: element,name:'',description:''});
+    this.itemsReq.forEach((element) => {
+      this.itemsRequested.push({ id: element, name: '', description: '' });
     });
     this.request.itemsRequested = this.itemsRequested;
     this.seeker = this.requestForm.getRawValue();
@@ -191,6 +197,11 @@ export class RequestComponent implements OnInit {
     //calls log request service method
     this.seekerService.logRequest(this.seeker).subscribe(
       (data) => {
+        let request: Request = data;
+        alert(
+          'Successfully logged the help request.\n Please note below details to check on your request status : \n Request ID : ' +
+            request.id + "\n PIN : "+request.pin
+        );
         this.router.navigate(['']);
       },
       (error) => console.log(error)
@@ -200,5 +211,6 @@ export class RequestComponent implements OnInit {
   //Clears the form on click of clear button
   resetForm() {
     this.requestForm.reset();
+    this.isAngelPresent = true;
   }
 }
