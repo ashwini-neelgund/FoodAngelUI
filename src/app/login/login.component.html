@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container-fluid col-md-8 p-5">
+    <div class="card" id="shadow">
+        <img src="../../assets/images/sunrise.jpg" class="card-img" alt="..." id="bgImage">
+        <div class="card-img-overlay">
+            <form class="row g-3 needs-validation p-5" novalidate [formGroup]="loginForm" (ngSubmit)="authenticate()">
+                <div class="row">
+                    <div class="mb-3 col-4">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="userName" aria-describedby="emailHelp"
+                            formControlName="userName">
+                        <span
+                            *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required')"
+                            class="alert">Please enter email address</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-4">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+                        <span
+                            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
+                            class="alert">Please enter password</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-4">
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!loginForm.valid || loading">Submit</button>
+
+                        <img *ngIf="loading"
+                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <div *ngIf="error" class="alert">{{error}}</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

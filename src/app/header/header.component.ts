@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { combineLatest } from 'rxjs';
+import { JwtClientService } from '../services/jwt-client.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loginService:JwtClientService) { }
 
   ngOnInit(): void {
   }

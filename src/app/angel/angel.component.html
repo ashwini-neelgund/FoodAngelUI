@@ -6,7 +6,7 @@
                 <div class="col">
                     <!--New Request form-->
                     <form class="row g-3 needs-validation p-5" novalidate [formGroup]="newReqForm">
-                        <h2 class="p-3">New Requests</h2>
+                        <h2 class="p-3 text-secondary">New Requests</h2>
                         <div class="accordion" id="accordionExample">
                             <!--ngfor loop started for dynamic data -->
                             <div class="accordion-item" *ngFor="let request of newRequests; let i = index">
@@ -40,7 +40,7 @@
                 <div class="col">
                     <!--Assigned Request form-->
                     <form class="row g-3 needs-validation p-5" novalidate [formGroup]="assignedReqForm">
-                        <h2 class="p-3">Assigned Requests</h2>
+                        <h2 class="p-3 text-secondary">Assigned Requests</h2>
                         <div class="accordion" id="accordionExample1">
                             <!--ngfor loop started for dynamic data -->
                             <div class="accordion-item" *ngFor="let request of assignedRequests; let i = index">
@@ -65,7 +65,8 @@
                                             <button type="button" class="btn btn-secondary m-2"
                                                 (click)="updateRequest(request.id)">Magic done</button>
                                             <button type="button" class="btn btn-secondary m-2"
-                                                (click)="removeAssignedRequest(request.id)">Cannot Work My Magic On It</button>
+                                                (click)="removeAssignedRequest(request.id)">Cannot Work My Magic On
+                                                It</button>
                                         </div>
                                     </div>
                                 </div>

@@ -151,7 +151,7 @@ export class RegisterComponent implements OnInit {
     //calls angel registration service method
     this.userService.registerAngel(userAndImageData).subscribe(
       (data) => {
-        this.router.navigate(['/angel']);
+        this.router.navigate(['/login']);
       },
       (error) => console.log(error)
     );
